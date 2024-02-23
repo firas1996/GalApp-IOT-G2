@@ -9,10 +9,17 @@ export default function App() {
   const getData = (x) => {
     setItems([x, ...items]);
   };
+  const removeItem = (id) => {
+    setItems(
+      items.filter((item) => {
+        return item.id != id;
+      })
+    );
+  };
   return (
     <View style={styles.container}>
       <AddGal getData={getData} />
-      <ListGal items={items} />
+      <ListGal items={items} removeItem={removeItem} />
       <StatusBar style="auto" />
     </View>
   );

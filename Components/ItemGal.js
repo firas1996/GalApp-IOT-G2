@@ -1,12 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 
-const ItemGal = ({ name }) => {
+const ItemGal = ({ name, id, removeItem }) => {
+  const remove = () => {
+    removeItem(id);
+  };
   return (
     <View style={styles.item}>
       <Text style={styles.itemTXT}>{name}</Text>
-      <Ionicons name="trash" size={28} color="red" />
+      <Pressable onPress={remove}>
+        <Ionicons name="trash" size={28} color="red" />
+      </Pressable>
     </View>
   );
 };

@@ -1,11 +1,15 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
-
+let id = 1;
 const AddGal = ({ getData }) => {
   const [data, setData] = useState("");
   const addItem = () => {
     if (data != "") {
-      getData(data);
+      getData({
+        id: id,
+        name: data,
+      });
+      id++;
       setData("");
     }
   };
