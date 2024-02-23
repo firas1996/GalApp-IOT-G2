@@ -8,6 +8,7 @@ const AddGal = ({ getData }) => {
       getData({
         id: id,
         name: data,
+        isFav: false,
       });
       id++;
       setData("");

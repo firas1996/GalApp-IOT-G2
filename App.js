@@ -16,10 +16,18 @@ export default function App() {
       })
     );
   };
+  const favItem = (id) => {
+    setItems(
+      items.map((item) => {
+        return item.id == id ? { ...item, isFav: !item.isFav } : item;
+      })
+    );
+  };
+  console.log(items);
   return (
     <View style={styles.container}>
       <AddGal getData={getData} />
-      <ListGal items={items} removeItem={removeItem} />
+      <ListGal items={items} removeItem={removeItem} favItem={favItem} />
       <StatusBar style="auto" />
     </View>
   );
