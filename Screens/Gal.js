@@ -1,9 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import ListGal from "../Components/ListGal";
 import AddGal from "../Components/AddGal";
 
-const Gal = () => {
+const Gal = ({ navigation }) => {
   const [items, setItems] = useState([]);
   const getData = (x) => {
     setItems([x, ...items]);
@@ -23,9 +23,20 @@ const Gal = () => {
     );
   };
   console.log(items);
+  const goToFav = () => {
+    const favItems = items.filter((item) => {
+      return item.isFav == true;
+    });
+    navigation.navigate("FavGal", {
+      favItems: favItems,
+      removeItem: removeItem,
+      favItem: favItem,
+    });
+  };
   return (
     <View style={styles.container}>
       <AddGal getData={getData} />
+      <Button title="FavGal" onPress={goToFav} />
       <ListGal items={items} removeItem={removeItem} favItem={favItem} />
     </View>
   );
