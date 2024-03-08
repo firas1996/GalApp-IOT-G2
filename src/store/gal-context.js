@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const GalStore = createContext({
   items: [],
@@ -26,12 +26,16 @@ const MyProvider = ({ children }) => {
         return item.id == id ? { ...item, isFav: !item.isFav } : item;
       })
     );
+  };
+  useEffect(() => {
     setFavItems(
       items.filter((item) => {
         return item.isFav;
       })
     );
-  };
+    console.log("effect");
+  }, [items]);
+  console.log("after effect");
   return (
     <GalStore.Provider
       value={{
