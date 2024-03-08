@@ -1,11 +1,13 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { GalStore } from "../store/gal-context";
 let id = 1;
-const AddGal = ({ getData }) => {
+const AddGal = () => {
+  const ctx = useContext(GalStore);
   const [data, setData] = useState("");
   const addItem = () => {
     if (data != "") {
-      getData({
+      ctx.addItem({
         id: id,
         name: data,
         isFav: false,

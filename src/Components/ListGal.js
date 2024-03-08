@@ -1,23 +1,23 @@
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import ItemGal from "./ItemGal";
+import { GalStore } from "../store/gal-context";
 
-const ListGal = ({ items, removeItem, favItem }) => {
+const ListGal = () => {
+  const galStore = useContext(GalStore);
+  console.log("ss", galStore.items);
   return (
     <View style={styles.list}>
       <FlatList
-        data={items}
+        data={galStore.items}
         renderItem={(element) => {
           return (
             <ItemGal
               name={element.item.name}
               id={element.item.id}
               isFav={element.item.isFav}
-              removeItem={removeItem}
-              favItem={favItem}
             />
           );
-          // console.log(item);
         }}
       />
       {/* {items.map((item, index) => {

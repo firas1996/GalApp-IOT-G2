@@ -1,14 +1,16 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import { GalStore } from "../store/gal-context";
 
-const ItemGal = ({ name, id, removeItem, favItem, isFav }) => {
+const ItemGal = ({ name, id, isFav }) => {
+  const myStore = useContext(GalStore);
   const remove = () => {
-    removeItem(id);
+    myStore.removeItem(id);
   };
   const favHandler = () => {
-    favItem(id);
+    myStore.favItem(id);
   };
   return (
     <View style={styles.item}>

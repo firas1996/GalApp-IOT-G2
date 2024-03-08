@@ -1,20 +1,23 @@
 import { Button, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import ListGal from "../Components/ListGal";
+import AddGal from "../Components/AddGal";
+import { GalStore } from "../store/gal-context";
 
-const FavGal = ({ route }) => {
+const Gal = ({ navigation }) => {
+  const goToFav = () => {
+    navigation.navigate("FavGal");
+  };
   return (
     <View style={styles.container}>
-      <ListGal
-        items={route.params.favItems}
-        removeItem={route.params.removeItem}
-        favItem={route.params.favItem}
-      />
+      <AddGal />
+      <Button title="FavGal" onPress={goToFav} />
+      <ListGal />
     </View>
   );
 };
 
-export default FavGal;
+export default Gal;
 
 const styles = StyleSheet.create({
   container: {
